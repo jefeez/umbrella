@@ -1,7 +1,9 @@
 /** @type {import('tailwindcss').Config} */
 export default {
   content: ['./index.html', './src/**/*.{js,ts,jsx,tsx}'],
+  darkMode: 'class',
   theme: {
+
     extend: {
       fontFamily: {
         jetbrains: 'JetBrains Mono',
@@ -25,6 +27,18 @@ export default {
           200: '#3d3d3d',
           100: '#424242',
         },
+        light: {
+          1000: '#ebebeb',
+          900: '#e5e5e5',
+          800: '#e0e0e0',
+          700: '#dbdbdb',
+          600: '#d6d6d6',
+          500: '#d1d1d1',
+          400: '#cccccc',
+          300: '#c7c7c7',
+          200: '#c2c2c2',
+          100: '#bdbdbd',
+        }
       },
     },
   },
