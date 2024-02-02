@@ -18,7 +18,7 @@
   }
 
   .bar {
-    @apply w-full h-12 shrink-0 bg-dark-700 border-b border-t border-dark-500;
+    @apply w-full h-12 shrink-0 flex bg-dark-700 border-b border-t border-dark-500;
   }
   
   .sidebar {
@@ -55,6 +55,14 @@
 
   .input {
     @apply w-full border rounded-sm border-dark-500 focus:border-indigo-500 py-3 px-4 focus:ring-0 bg-dark-900
+  }
+
+  .btn-submit {
+    @apply text-white bg-indigo-600 text-center hover:bg-indigo-500 px-4 py-2 text-xs font-bold rounded-sm
+  }
+
+  .btn-cancel {
+    @apply text-white bg-dark-600 text-center hover:bg-dark-400 px-4 py-2 text-xs font-bold rounded-sm
   }
 
 }
