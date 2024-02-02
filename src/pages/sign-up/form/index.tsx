@@ -44,9 +44,9 @@ export default function Form() {
 
   return (
     <form className="form" onSubmit={handleSubmit(onSubmit)}>
-      <Input errors={errors} label="username" register={register} />
-      <Input errors={errors} label="email" register={register} />
-      <Input errors={errors} label="password" register={register} />
+      <Input errors={errors} type="username" label="username" register={register} />
+      <Input errors={errors} type="email" label="email" register={register} />
+      <Input errors={errors} type="password" label="password" register={register} />
       <Submit />
     </form>
   );
