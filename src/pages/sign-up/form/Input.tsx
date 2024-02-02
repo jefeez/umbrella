@@ -1,4 +1,5 @@
 /* eslint-disable react/jsx-props-no-spreading */
+import { HTMLInputTypeAttribute } from 'react';
 import { FieldErrors, Path, UseFormRegister } from 'react-hook-form';
 
 interface IFormValues {
@@ -10,8 +11,10 @@ interface IFormValues {
 export default function Input({
   label,
   errors,
+  type,
   register,
 }: {
+  type: HTMLInputTypeAttribute;
   errors: FieldErrors<IFormValues>;
   label: Path<IFormValues>;
   register: UseFormRegister<IFormValues>;
@@ -27,6 +30,7 @@ export default function Input({
         </span>
       </div>
       <input
+        type={type}
         {...register(label)}
         className={`input  ${err ? 'border-red-500 focus:border-orange-500' : ''}`}
       />
