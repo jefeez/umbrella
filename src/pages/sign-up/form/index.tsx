@@ -4,7 +4,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 
 import Submit from '../../../components/Submit';
 import Input from './Input';
-import SignUp from '..';
+
 import { useAuth } from '../../../hooks/useAuth';
 
 const schemas = z.object({

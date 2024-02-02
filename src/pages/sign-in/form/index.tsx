@@ -2,6 +2,7 @@ import { useForm } from 'react-hook-form';
 import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
 
+import { useNavigate } from 'react-router-dom';
 import Submit from '../../../components/Submit';
 import Input from './Input';
 import { useAuth } from '../../../hooks/useAuth';
@@ -33,10 +34,12 @@ export default function Form() {
   });
 
   const { signIn } = useAuth();
+  const nav = useNavigate();
 
   const onSubmit = async (data: ISign) => {
     try {
       await signIn(data);
+      nav('/app');
       // eslint-disable-next-line no-empty
     } catch (error) {}
   };
