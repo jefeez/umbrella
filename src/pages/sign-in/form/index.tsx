@@ -4,6 +4,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 
 import Submit from '../../../components/Submit';
 import Input from './Input';
+import { useAuth } from '../../../hooks/useAuth';
 
 const schemas = z.object({
   email: z
@@ -31,8 +32,13 @@ export default function Form() {
     resolver: zodResolver(schemas),
   });
 
-  const onSubmit = (data: ISign) => {
-    console.log(data);
+  const { signIn } = useAuth();
+
+  const onSubmit = async (data: ISign) => {
+    try {
+      await signIn(data);
+      // eslint-disable-next-line no-empty
+    } catch (error) {}
   };
 
   return (
