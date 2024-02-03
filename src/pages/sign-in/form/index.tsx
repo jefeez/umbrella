@@ -7,6 +7,10 @@ import { useNavigate, Link } from 'react-router-dom';
 import { useState } from 'react';
 import Submit from '../../../components/Submit';
 import Input from './Input';
+import Bar from '../../../layouts/bar';
+import FooterForm from '../../../components/FooterForm';
+import Icon from '../../../components/Icon';
+import Name from '../../../components/Name';
 import { useAuth } from '../../../hooks/useAuth';
 import { notify } from '../../../utils/notify';
 
@@ -55,17 +59,19 @@ export default function Form() {
 
   return (
     <form className="form" onSubmit={handleSubmit(onSubmit)}>
-      <Input errors={errors} type="email" label="email" register={register} />
-      <Input errors={errors} type="password" label="password" register={register} />
-      <Submit loading={loading}>SIGN-IN</Submit>
-      <div className="w-full flex flex-col py-2">
-        <div className="w-full text-xs font-bold pl-5">
-          Don&apos;t have an account yet?&nbsp;&nbsp;
-          <Link to="/sign-up" className="text-indigo-500 hover:text-indigo-400">
-            SIGN-UP
-          </Link>
-        </div>
+      <Bar>
+        <Icon awesome="fa-solid fa-caret-right" />
+        <Name>SIGN-IN</Name>
+      </Bar>
+      <div className="w-full h-full p-10 gap-5 flex flex-col">
+        <Input errors={errors} type="email" label="email" register={register} />
+        <Input errors={errors} type="password" label="password" register={register} />
+        <Submit loading={loading}>SIGN-IN</Submit>
+        <FooterForm to="/sign-up" text="Don't have an account?">
+          SIGN-UP
+        </FooterForm>
       </div>
+      <Bar />
     </form>
   );
 }
