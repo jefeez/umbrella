@@ -2,6 +2,7 @@ import { useForm } from 'react-hook-form';
 import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
 
+import { Link } from 'react-router-dom';
 import Submit from '../../../components/Submit';
 import Input from './Input';
 
@@ -39,7 +40,15 @@ export default function Form() {
     <form className="form" onSubmit={handleSubmit(onSubmit)}>
       <Input errors={errors} type="email" label="email" register={register} />
       <Input errors={errors} type="password" label="password" register={register} />
-      <Submit />
+      <Submit>SIGN-IN</Submit>
+      <div className="w-full flex flex-col py-2">
+        <div className="w-full text-xs font-bold pl-5">
+          Don&apos;t have an account yet?&nbsp;&nbsp;
+          <Link to="/sign-up" className="text-indigo-500 hover:text-indigo-400">
+            SIGN-UP
+          </Link>
+        </div>
+      </div>
     </form>
   );
 }
