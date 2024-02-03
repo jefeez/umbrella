@@ -2,11 +2,13 @@ import { useForm } from 'react-hook-form';
 import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
 
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import { useState } from 'react';
 import Submit from '../../../components/Submit';
 import Input from './Input';
 
 import { useAuth } from '../../../hooks/useAuth';
+import { notify } from '../../../utils/notify';
 
 const schemas = z.object({
   username: z
@@ -42,12 +44,27 @@ export default function Form() {
   });
 
   const { signUp } = useAuth();
+  const [loading, setLoading] = useState(false);
+  const nav = useNavigate();
 
   const onSubmit = async (data: ISign) => {
     try {
+      setLoading(true);
       await signUp(data);
+      nav('/app');
+      setLoading(false);
       // eslint-disable-next-line no-empty
-    } catch (error) {}
+    } catch (error: any) {
+      setLoading(false);
+
+      if (error.response.data.messages === 'username already used') {
+        notify.error('username already used');
+      }
+
+      if (error.response.data.messages === 'email already registered') {
+        notify.error('email already registered');
+      }
+    }
   };
 
   return (
@@ -55,7 +72,7 @@ export default function Form() {
       <Input errors={errors} type="username" label="username" register={register} />
       <Input errors={errors} type="email" label="email" register={register} />
       <Input errors={errors} type="password" label="password" register={register} />
-      <Submit>SIGN-UP</Submit>
+      <Submit loading={loading}>SIGN-UP</Submit>
       <div className="w-full flex flex-col py-2">
         <div className="w-full text-xs font-bold pl-5">
           You are already have an account?&nbsp;&nbsp;

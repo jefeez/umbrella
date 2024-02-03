@@ -3,9 +3,12 @@ import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
 
 import { useNavigate, Link } from 'react-router-dom';
+
+import { useState } from 'react';
 import Submit from '../../../components/Submit';
 import Input from './Input';
 import { useAuth } from '../../../hooks/useAuth';
+import { notify } from '../../../utils/notify';
 
 const schemas = z.object({
   email: z
@@ -33,22 +36,28 @@ export default function Form() {
     resolver: zodResolver(schemas),
   });
 
+  const [loading, setLoading] = useState(false);
   const { signIn } = useAuth();
   const nav = useNavigate();
 
   const onSubmit = async (data: ISign) => {
     try {
+      setLoading(true);
       await signIn(data);
+      setLoading(false);
       nav('/app');
       // eslint-disable-next-line no-empty
-    } catch (error) {}
+    } catch (error) {
+      setLoading(false);
+      notify.warn('You have entered an invalid username or password');
+    }
   };
 
   return (
     <form className="form" onSubmit={handleSubmit(onSubmit)}>
       <Input errors={errors} type="email" label="email" register={register} />
       <Input errors={errors} type="password" label="password" register={register} />
-      <Submit>SIGN-IN</Submit>
+      <Submit loading={loading}>SIGN-IN</Submit>
       <div className="w-full flex flex-col py-2">
         <div className="w-full text-xs font-bold pl-5">
           Don&apos;t have an account yet?&nbsp;&nbsp;
