@@ -7,6 +7,7 @@ export interface IAuthContext {
   authenticated: boolean;
   signIn: (sign: ISignIn) => Promise<boolean>;
   signUp: (sign: ISignUp) => Promise<boolean>;
+  me: () => Promise<boolean>;
 }
 
 export const AuthContext = createContext<IAuthContext>(null!);
@@ -34,8 +35,18 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     return false;
   };
 
+  const me = async () => {
+    const response = await api.me();
+    if (response) {
+      setAuthenticated(true);
+      return true;
+    }
+    setAuthenticated(false);
+    return false;
+  };
+
   return (
-    <AuthContext.Provider value={{ authenticated, signIn, signUp }}>
+    <AuthContext.Provider value={{ authenticated, signIn, signUp, me }}>
       {children}
     </AuthContext.Provider>
   );

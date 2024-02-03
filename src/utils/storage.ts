@@ -10,4 +10,8 @@ const getItem = (prefix: string) => {
   return '';
 };
 
-export default { setItem, getItem };
+const removeItem = (prefix: string) => {
+  localStorage.removeItem(prefix);
+};
+
+export default { setItem, getItem, removeItem };

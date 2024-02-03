@@ -37,7 +37,7 @@ const signUp = async (data: ISignUp) => {
   return response.data;
 };
 
-const authenticated = async () => {
+const me = async () => {
   const response = await api.get<ISignInResponse>('auth/', {
     headers: { Authorization: `Bearer ${storage.getItem('@AUTH')}` },
   });
@@ -56,4 +56,4 @@ const avatar = async (filer: File) => {
   return response.data;
 };
 
-export default { signIn, signUp, authenticated, avatar };
+export default { signIn, signUp, me, avatar };
