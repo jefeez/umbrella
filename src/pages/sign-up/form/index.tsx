@@ -2,11 +2,14 @@ import { useForm } from 'react-hook-form';
 import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
 
-import { Link, useNavigate } from 'react-router-dom';
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import Submit from '../../../components/Submit';
 import Input from './Input';
-
+import FooterForm from '../../../components/FooterForm';
+import Bar from '../../../layouts/bar';
+import Name from '../../../components/Name';
+import Icon from '../../../components/Icon';
 import { useAuth } from '../../../hooks/useAuth';
 import { notify } from '../../../utils/notify';
 
@@ -69,18 +72,20 @@ export default function Form() {
 
   return (
     <form className="form" onSubmit={handleSubmit(onSubmit)}>
-      <Input errors={errors} type="username" label="username" register={register} />
-      <Input errors={errors} type="email" label="email" register={register} />
-      <Input errors={errors} type="password" label="password" register={register} />
-      <Submit loading={loading}>SIGN-UP</Submit>
-      <div className="w-full flex flex-col py-2">
-        <div className="w-full text-xs font-bold pl-5">
-          You are already have an account?&nbsp;&nbsp;
-          <Link to="/sign-in" className="text-indigo-500 hover:text-indigo-400">
-            SIGN-IN
-          </Link>
-        </div>
+      <Bar>
+        <Icon awesome="fa-solid fa-caret-right" />
+        <Name>SIGN-UP</Name>
+      </Bar>
+      <div className="w-full h-full p-10 gap-5 flex flex-col">
+        <Input errors={errors} type="username" label="username" register={register} />
+        <Input errors={errors} type="email" label="email" register={register} />
+        <Input errors={errors} type="password" label="password" register={register} />
+        <Submit loading={loading}>SIGN-UP</Submit>
+        <FooterForm to="/sign-in" text=" You are already have an account?">
+          SIGN-IN
+        </FooterForm>
       </div>
+      <Bar />
     </form>
   );
 }

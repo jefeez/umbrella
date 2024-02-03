@@ -13,9 +13,7 @@ export default function SignUp() {
           <Umbrella />
         </Toolbar>
         <Sign>
-          <Bar />
           <Form />
-          <Bar />
         </Sign>
       </div>
     </Wrapper>
