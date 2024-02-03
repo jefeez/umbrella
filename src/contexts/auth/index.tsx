@@ -1,5 +1,6 @@
 /* eslint-disable react/jsx-no-constructed-context-values */
 import { ReactNode, createContext, useState } from 'react';
+
 import api, { ISignIn, ISignUp } from '../../services/api';
 import storage from '../../utils/storage';
 
@@ -7,6 +8,7 @@ export interface IAuthContext {
   authenticated: boolean;
   signIn: (sign: ISignIn) => Promise<boolean>;
   signUp: (sign: ISignUp) => Promise<boolean>;
+  avatar: (data: File) => Promise<boolean>;
   me: () => Promise<boolean>;
 }
 
@@ -45,8 +47,16 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     return false;
   };
 
+  const avatar = async (data: File) => {
+    const response = await api.avatar(data);
+    if (response) {
+      return true;
+    }
+    return false;
+  };
+
   return (
-    <AuthContext.Provider value={{ authenticated, signIn, signUp, me }}>
+    <AuthContext.Provider value={{ authenticated, signIn, signUp, avatar, me }}>
       {children}
     </AuthContext.Provider>
   );

@@ -8,6 +8,7 @@ import SignUp from './pages/sign-up';
 import { AuthProvider } from './contexts/auth';
 import Protected from './pages/Protected';
 import 'react-toastify/dist/ReactToastify.css';
+import Avatar from './pages/avatar';
 
 ReactDOM.createRoot(document.getElementById('app')!).render(
   <>
@@ -25,6 +26,7 @@ ReactDOM.createRoot(document.getElementById('app')!).render(
           />
           <Route path="/sign-in" element={<SignIn />} />
           <Route path="/sign-up" element={<SignUp />} />
+          <Route path="/avatar" element={<Avatar />} />
         </Routes>
       </AuthProvider>
     </BrowserRouter>

@@ -8,13 +8,12 @@ export default function Sidetab() {
     <div className="sidebar">
       <Insider>
         <Bar>
-          <Bar>
-            <div className="h-full flex items-center">
-              <Icon awesome="fa-solid fa-filter" />
-              <Name>SIDETAB</Name>
-            </div>
-          </Bar>
+          <div className="h-full flex items-center">
+            <Icon awesome="fa-solid fa-filter" />
+            <Name>SIDETAB</Name>
+          </div>
         </Bar>
+
         <div className="w-full h-full p-2" />
       </Insider>
     </div>

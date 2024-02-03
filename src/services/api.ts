@@ -49,7 +49,7 @@ const avatar = async (filer: File) => {
   data.append('avatar', filer);
   const response = await api.put<Omit<ISignInResponse, 'token'>>('auth/avatar/', data, {
     headers: {
-      Authorization: `Bearer ${storage.getItem('@TOKEN')}`,
+      Authorization: `Bearer ${storage.getItem('@AUTH')}`,
       'Content-Type': 'multipart/form-data',
     },
   });
