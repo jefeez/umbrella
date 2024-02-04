@@ -5,7 +5,7 @@ import api, { ISignIn, ISignUp } from '../../services/api';
 import storage from '../../utils/storage';
 
 export interface IAuthContext {
-  authenticated: boolean;
+  authenticated: boolean | null;
   signIn: (sign: ISignIn) => Promise<boolean>;
   signUp: (sign: ISignUp) => Promise<boolean>;
   avatar: (data: File) => Promise<boolean>;
@@ -15,7 +15,7 @@ export interface IAuthContext {
 export const AuthContext = createContext<IAuthContext>(null!);
 
 export function AuthProvider({ children }: { children: ReactNode }) {
-  const [authenticated, setAuthenticated] = useState(!!storage.getItem('@AUTH'));
+  const [authenticated, setAuthenticated] = useState<boolean | null>(null);
 
   const signIn = async (sign: ISignIn) => {
     const response = await api.signIn(sign);

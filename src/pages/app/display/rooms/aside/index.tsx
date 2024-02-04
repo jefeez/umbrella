@@ -35,7 +35,7 @@ export default function Aside() {
         </Bar>
         <div className="w-full h-full p-2">
           {onlines.map(({ avatar, username }) => (
-            <Online avatar={avatar} username={username} />
+            <Online key={username} avatar={avatar} username={username} />
           ))}
         </div>
       </Insider>
