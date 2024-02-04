@@ -1,25 +1,28 @@
-export default function Body() {
+export default function Body({
+  hour,
+  by,
+  body,
+}: {
+  hour: string;
+  by: {
+    avatar: string;
+    username: string;
+  };
+  body: string;
+}) {
   return (
-    <div className="p-2 flex">
+    <div className=" flex">
       <div className="w-10 h-10 shrink-0 flex items-center justify-center">
         <div className="flex items-center justify-center w-10 h-10 border border-dark-500 p-1 overflow-hidden rounded-full">
-          <img
-            className="rounded-full"
-            alt=""
-            src="https://res.cloudinary.com/drrsfzeci/image/upload/v1706804268/ghost/uxyir8wi10u3xmnjgeem.png"
-          />
+          <img className="rounded-full" alt="" src={by.avatar} />
         </div>
       </div>
       <div className="w-full px-2 flex flex-col ">
         <div className="h-10 flex items-center text-xs  font-extrabold">
-          <span>JE7Z</span>
-          <span>&nbsp;- 14:16</span>
+          <span>{by.username}</span>
+          <span>&nbsp;- {hour}</span>
         </div>
-        <div className="w-full text-sm font-medium">
-          Lorem ipsum, dolor sit amet consectetur adipisicing elit. Maiores sequi officia numquam
-          error dolorem porro, temporibus iste recusandae voluptatem, cumque fugiat, nobis iusto
-          modi aliquam.
-        </div>
+        <div className="w-full text-sm font-medium">{body}</div>
       </div>
     </div>
   );
