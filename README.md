@@ -2,6 +2,8 @@
 
 Sample chat using tailwindcss socket.io and sign-in and sign-up authentication with api
 
+[live project on vercel](https://umb-seven.vercel.app/)
+
 ## Features
 
 - authentication jwt
