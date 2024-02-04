@@ -54,7 +54,7 @@ export default function Form() {
     try {
       setLoading(true);
       await signUp(data);
-      nav('/app');
+      nav('/avatar');
       setLoading(false);
       // eslint-disable-next-line no-empty
     } catch (error: any) {
