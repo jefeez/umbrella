@@ -21,9 +21,9 @@ export default function Protected({ children }: { children: ReactNode }) {
     already();
   }, []);
 
-  if (loading) {
-    return <Loading />;
-  }
+  // if (loading) {
+  //   return <Loading />;
+  // }
 
   if (!authenticated) {
     return <Navigate to="/sign-in" />;
