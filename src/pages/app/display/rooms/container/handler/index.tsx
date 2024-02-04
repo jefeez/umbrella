@@ -1,11 +1,20 @@
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 export default function Handler({ onBody }: { onBody: (body: string) => void }) {
   const [body, setBody] = useState('');
 
+  const inputRef = useRef<HTMLInputElement>(null);
+
+  useEffect(() => {
+    if (inputRef) {
+      inputRef.current?.focus();
+    }
+  }, []);
+
   return (
     <div className="handler">
       <input
+        ref={inputRef}
         type="text"
         onKeyDown={e => {
           if (e.key === 'Enter') {
